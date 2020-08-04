@@ -61,6 +61,7 @@ function renderWatching(watching){
 
             //Removing filter and making element dissappear
             wrapperDiv.addEventListener("click", ()=>{
+                document.getElementById("blocker-element").style.display = "none";
                 document.getElementById("anime-wrapper" + index).style.display = "none";
                 document.getElementById("mal-info").style.filter ="grayscale(0%) brightness(1)";
             });
@@ -86,6 +87,7 @@ function renderWatching(watching){
 
             //Adding filter and making element appear
             document.getElementById("list-image" + index).addEventListener("click", ()=>{
+                document.getElementById("blocker-element").style.display = "block";
                 document.getElementById("anime-wrapper" + index).style.display = "flex";
                 document.getElementById("mal-info").style.filter ="grayscale(100%) brightness(0.2)";
             });
@@ -105,6 +107,7 @@ function renderCompleted(completed){
             wrapperDiv.style.display = "none";
 
             wrapperDiv.addEventListener("click", ()=>{
+                document.getElementById("blocker-element").style.display = "none";
                 document.getElementById("anime-wrapper" + index).style.display = "none";
                 document.getElementById("mal-info").style.filter ="grayscale(0%) brightness(1)";
             });
@@ -125,6 +128,7 @@ function renderCompleted(completed){
             document.getElementById("mal-info").appendChild(listImage);
 
             document.getElementById("list-image" + index).addEventListener("click", ()=>{
+                document.getElementById("blocker-element").style.display = "block";
                 document.getElementById("anime-wrapper" + index).style.display = "flex";
                 document.getElementById("mal-info").style.filter ="grayscale(100%) brightness(0.2)";
             });
@@ -144,6 +148,7 @@ function renderPtw(planToWatch){
             wrapperDiv.style.display = "none";
 
             wrapperDiv.addEventListener("click", ()=>{
+                document.getElementById("blocker-element").style.display = "none";
                 document.getElementById("anime-wrapper" + index).style.display = "none";
                 document.getElementById("mal-info").style.filter ="grayscale(0%) brightness(1)";
             });
@@ -164,6 +169,7 @@ function renderPtw(planToWatch){
             document.getElementById("mal-info").appendChild(listImage);
 
             document.getElementById("list-image" + index).addEventListener("click", ()=>{
+                document.getElementById("blocker-element").style.display = "block";
                 document.getElementById("anime-wrapper" + index).style.display = "flex";
                 document.getElementById("mal-info").style.filter ="grayscale(100%) brightness(0.2)";
             });

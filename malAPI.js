@@ -1,10 +1,6 @@
 var hasLoadedAPI = false;
 const twitch = window.Twitch.ext;
 
-//REMOVE THIS BEFORE PUBLISHING
-window.onload = getMALInfo("beakie");
-///////////////////////////////////////////////
-
 async function getMALInfo(username){
     const watchingResponse = await fetch(`https://api.jikan.moe/v3/user/${username}/animelist/watching`);
     jsonWatching = await watchingResponse.json();
@@ -18,24 +14,24 @@ async function getMALInfo(username){
     renderAnime("watching", jsonWatching);
 }
 
-// twitch.onAuthorized(function(auth){
-//     // save our credentials
-//     token = auth.token; 
-//     userId = auth.userId;
-//     if(!hasLoadedAPI){
-//         hasLoadedAPI = true;
-//         try{
-//             twitch.rig.log(twitch.configuration.broadcaster);
-//             const myJSON = JSON.parse(twitch.configuration.broadcaster.content)
-//             const username = myJSON["username"];
+twitch.onAuthorized(function(auth){
+    // save our credentials
+    token = auth.token; 
+    userId = auth.userId;
+    if(!hasLoadedAPI){
+        hasLoadedAPI = true;
+        try{
+            twitch.rig.log(twitch.configuration.broadcaster);
+            const myJSON = JSON.parse(twitch.configuration.broadcaster.content)
+            const username = myJSON["username"];
     
-//             getMALInfo(username);
-//         }
-//         catch(e){
-//             console.log(e);
-//         }
-//     }
-// });
+            getMALInfo(username);
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
+});
 
 
     
