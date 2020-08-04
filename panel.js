@@ -1,4 +1,4 @@
-var currentState = "loaded";
+var currentState = "watching";
 var navWatching, navCompleted, navFuture;
 
 //getting html elements

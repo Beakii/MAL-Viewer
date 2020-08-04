@@ -1,7 +1,5 @@
 const twitch = window.Twitch.ext;
 
-document.getElementById("update-button").addEventListener("click", updateConfig);
-
   // onAuthorized callback called each time JWT is fired
   twitch.onAuthorized((auth) => {
     // save our credentials
@@ -20,6 +18,16 @@ document.getElementById("update-button").addEventListener("click", updateConfig)
 
       document.getElementById("update-button").style.backgroundColor = "lightgreen";
       document.getElementById("update-button").innerText = "Done";
+    }
+
+    try{
+      const myJSON = JSON.parse(twitch.configuration.broadcaster.content)
+      const username = myJSON["username"];
+
+      document.getElementById("current-username").innerText = "Current MAL Username: " + username;
+    }
+    catch(e){
+        console.log(e);
     }
   });
 
