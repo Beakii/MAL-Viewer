@@ -1,6 +1,8 @@
 var hasLoadedAPI = false;
 const twitch = window.Twitch.ext;
 
+window.onload = function(){getMALInfo("beakie")}
+
 async function getMALInfo(username){
     const watchingResponse = await fetch(`https://api.jikan.moe/v3/user/${username}/animelist/watching`);
     jsonWatching = await watchingResponse.json();
