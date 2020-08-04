@@ -1,4 +1,4 @@
-var currentState = "watching";
+var currentState = "loaded";
 var navWatching, navCompleted, navFuture;
 
 //getting html elements
@@ -11,13 +11,10 @@ navWatching.addEventListener("click", ()=>{currentState = "watching";      rende
 navCompleted.addEventListener("click", ()=>{currentState = "completed";    renderAnime(currentState, jsonCompleted);});
 navFuture.addEventListener("click", ()=>{currentState = "future";          renderAnime(currentState, jsonPlanToWatch);});
 
-window.onload = function(){
-    document.getElementById("username-title").innerText = "I'm loading, give me time! :D";
-}
-
 function renderAnime(currentState, jsonResponse){
     //Clear any existing elements.
     document.getElementById("mal-info").innerHTML = "";
+    document.getElementById("anime-large-cards").innerHTML = "";
 
     switch(currentState){
         case "watching":
@@ -43,34 +40,55 @@ function renderAnime(currentState, jsonResponse){
             navFuture.classList.add("selected");
             renderPtw(jsonResponse);
         break;
+
+        case "loaded":
+            var button = document.createElement("div");
+            button.setAttribute("class", "button");
+            document.getElementById("mal-info").appendChild(button);
+        break;
     }
 }
 
 function renderWatching(watching){
     if(watching["anime"]){
-        //Remove any existing elements
-        console.log("deleting elements...");
-    
-        //Itterate over json to add elements
-        console.log("re-adding animes...");
-        watching["anime"].forEach(function(element, index){
 
+        //Itterate over json to add elements
+        watching["anime"].forEach(function(element, index){
             var wrapperDiv = document.createElement("div");
             wrapperDiv.setAttribute("id", "anime-wrapper" + index)
             wrapperDiv.setAttribute("class", "anime-card")
-            document.getElementById("mal-info").appendChild(wrapperDiv);
-            
-            var title = document.createElement("h2");                 
-            title.innerHTML = element["title"];                
+            wrapperDiv.style.display = "none";
+
+            //Removing filter and making element dissappear
+            wrapperDiv.addEventListener("click", ()=>{
+                document.getElementById("anime-wrapper" + index).style.display = "none";
+                document.getElementById("mal-info").style.filter ="grayscale(0%) brightness(1)";
+            });
+
+            document.getElementById("anime-large-cards").appendChild(wrapperDiv);
+
+            var title = document.createElement("h2");
+            title.innerHTML = element["title"];
             document.getElementById("anime-wrapper" + index).appendChild(title);
     
             var episode = document.createElement("p");                 
             episode.innerHTML = "Episode: " + element["watched_episodes"] + " / " + (element["total_episodes"] ? element["total_episodes"] : "?");                
             document.getElementById("anime-wrapper" + index).appendChild(episode);
     
+            var listImage = document.createElement("img");
             var img = document.createElement("img");
             img.src = element["image_url"];
+            listImage.src = element["image_url"];
+            listImage.setAttribute("class", "list-image");
+            listImage.setAttribute("id", "list-image" + index);
             document.getElementById("anime-wrapper" + index).appendChild(img);
+            document.getElementById("mal-info").appendChild(listImage);
+
+            //Adding filter and making element appear
+            document.getElementById("list-image" + index).addEventListener("click", ()=>{
+                document.getElementById("anime-wrapper" + index).style.display = "flex";
+                document.getElementById("mal-info").style.filter ="grayscale(100%) brightness(0.2)";
+            });
         });
     }
     else{
@@ -80,25 +98,36 @@ function renderWatching(watching){
 
 function renderCompleted(completed){
     if(completed["anime"]){
-        //Remove any existing elements
-        console.log("deleting elements...");
-    
-        //Itterate over json to add elements
-        console.log("re-adding animes...");
         completed["anime"].forEach(function(element, index){
-
             var wrapperDiv = document.createElement("div");
             wrapperDiv.setAttribute("id", "anime-wrapper" + index)
             wrapperDiv.setAttribute("class", "anime-card")
-            document.getElementById("mal-info").appendChild(wrapperDiv);
-            
-            var title = document.createElement("h2");                 
-            title.innerHTML = element["title"];                
+            wrapperDiv.style.display = "none";
+
+            wrapperDiv.addEventListener("click", ()=>{
+                document.getElementById("anime-wrapper" + index).style.display = "none";
+                document.getElementById("mal-info").style.filter ="grayscale(0%) brightness(1)";
+            });
+
+            document.getElementById("anime-large-cards").appendChild(wrapperDiv);
+
+            var title = document.createElement("h2");
+            title.innerHTML = element["title"];
             document.getElementById("anime-wrapper" + index).appendChild(title);
     
+            var listImage = document.createElement("img");
             var img = document.createElement("img");
             img.src = element["image_url"];
+            listImage.src = element["image_url"];
+            listImage.setAttribute("class", "list-image");
+            listImage.setAttribute("id", "list-image" + index);
             document.getElementById("anime-wrapper" + index).appendChild(img);
+            document.getElementById("mal-info").appendChild(listImage);
+
+            document.getElementById("list-image" + index).addEventListener("click", ()=>{
+                document.getElementById("anime-wrapper" + index).style.display = "flex";
+                document.getElementById("mal-info").style.filter ="grayscale(100%) brightness(0.2)";
+            });
         });
     }
     else{
@@ -108,25 +137,36 @@ function renderCompleted(completed){
 
 function renderPtw(planToWatch){
     if(planToWatch["anime"]){
-        //Remove any existing elements
-        console.log("deleting elements...");
-    
-        //Itterate over json to add elements
-        console.log("re-adding animes...");
         planToWatch["anime"].forEach(function(element, index){
-
             var wrapperDiv = document.createElement("div");
             wrapperDiv.setAttribute("id", "anime-wrapper" + index)
             wrapperDiv.setAttribute("class", "anime-card")
-            document.getElementById("mal-info").appendChild(wrapperDiv);
-            
-            var title = document.createElement("h2");                 
-            title.innerHTML = element["title"];                
+            wrapperDiv.style.display = "none";
+
+            wrapperDiv.addEventListener("click", ()=>{
+                document.getElementById("anime-wrapper" + index).style.display = "none";
+                document.getElementById("mal-info").style.filter ="grayscale(0%) brightness(1)";
+            });
+
+            document.getElementById("anime-large-cards").appendChild(wrapperDiv);
+
+            var title = document.createElement("h2");
+            title.innerHTML = element["title"];
             document.getElementById("anime-wrapper" + index).appendChild(title);
     
+            var listImage = document.createElement("img");
             var img = document.createElement("img");
             img.src = element["image_url"];
+            listImage.src = element["image_url"];
+            listImage.setAttribute("class", "list-image");
+            listImage.setAttribute("id", "list-image" + index);
             document.getElementById("anime-wrapper" + index).appendChild(img);
+            document.getElementById("mal-info").appendChild(listImage);
+
+            document.getElementById("list-image" + index).addEventListener("click", ()=>{
+                document.getElementById("anime-wrapper" + index).style.display = "flex";
+                document.getElementById("mal-info").style.filter ="grayscale(100%) brightness(0.2)";
+            });
         });
     }
     else{

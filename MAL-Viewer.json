@@ -56,29 +56,35 @@
     "bitsEnabled": false,
     "canInstall": true,
     "configUrl": "https://localhost:8080/config.html",
-    "configurationLocation": "none",
+    "configurationLocation": "hosted",
     "description": "A simple and easy integration for streamers to showcase their MAL information as a twitch extension, so you dont need to leave the fun of the stream!",
     "eulaTosUrl": "",
     "hasChatSupport": false,
-    "iconUrl": "",
-    "iconUrls": {},
+    "iconUrl": "https://extensions-discovery-images.twitch.tv/w31mkd2ijawq6agtwbq84jr7z5p3d7/0.0.1/logo3e6fa438-b2c1-4b73-827b-f8f8e0fe56d3",
+    "iconUrls": {
+      "100x100": "https://extensions-discovery-images.twitch.tv/w31mkd2ijawq6agtwbq84jr7z5p3d7/0.0.1/logo3e6fa438-b2c1-4b73-827b-f8f8e0fe56d3",
+      "24x24": "https://extensions-discovery-images.twitch.tv/w31mkd2ijawq6agtwbq84jr7z5p3d7/0.0.1/taskbara30bb7bc-c6d9-49c6-bd16-9ad13702d6ea",
+      "300x200": "https://extensions-discovery-images.twitch.tv/w31mkd2ijawq6agtwbq84jr7z5p3d7/0.0.1/discoveryf73f1b20-0ff6-4573-81ff-a7bfcbcb081f"
+    },
     "id": "w31mkd2ijawq6agtwbq84jr7z5p3d7",
     "installationCount": -42,
     "liveConfigUrl": "",
     "name": "MAL-Viewer",
-    "panelHeight": 300,
+    "panelHeight": 500,
     "privacyPolicyUrl": "",
     "requestIdentityLink": false,
     "requiredBroadcasterAbilities": [],
-    "screenshotUrls": [],
+    "screenshotUrls": [
+      "https://extensions-discovery-images.twitch.tv/w31mkd2ijawq6agtwbq84jr7z5p3d7/0.0.1/screenshot854323cc-ed11-415a-b87e-06407d4deb1e"
+    ],
     "sku": "",
     "state": "Testing",
     "subscriptionsSupportLevel": "none",
-    "summary": "View {user} MAL information.",
+    "summary": "Fetches the Currently Watching, Completed and Plan to Watch lists that are available on your MyAnimeList page!",
     "supportEmail": "beakiebusiness@gmail.com",
     "vendorCode": "",
     "version": "0.0.1",
-    "viewerSummary": "",
+    "viewerSummary": "Displays the streamers MAL information.",
     "viewerUrl": "https://localhost:8080/panel.html",
     "viewerUrls": {
       "panel": "https://localhost:8080/panel.html"
@@ -86,7 +92,7 @@
     "views": {
       "panel": {
         "viewerUrl": "https://localhost:8080/panel.html",
-        "height": 300,
+        "height": 500,
         "canLinkExternalContent": false
       },
       "config": {
