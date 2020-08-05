@@ -1,0 +1,83 @@
+body{
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #18181b;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+hr{
+  color: #9147ff;
+  filter: brightness(1.5);
+}
+
+#username{
+  margin-bottom: 2rem;
+  height: 16px;
+  width: 35%;
+}
+
+input{
+  width: 100%;
+  height: 25px;
+}
+
+#error-message{
+  color: red;
+}
+
+.inputfield{
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 40px;
+}
+
+.input-wrapper p {
+  margin: 0;
+  padding: 0;
+}
+
+.inputfield img{
+  width: 50%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  padding-left: 2rem;
+}
+
+.input-wrapper{
+  width: 50%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 50px;
+  width: 100%;
+}
+
+.button-wrapper button{
+  width: 48%;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+#reset-button{
+  border: 2px solid red;
+  color: red;
+  background-color: #18181b;
+}
+
+#reset-button:hover{
+  background-color: red;
+  color: white;
+}

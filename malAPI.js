@@ -1,7 +1,7 @@
 var hasLoadedAPI = false;
-const twitch = window.Twitch.ext;
+var newJsonWatching, newJsonCompleted, newJsonPlanToWatch;
 
-async function getMALInfo(username){
+async function getMALInfo(username, configJson){
     const watchingResponse = await fetch(`https://api.jikan.moe/v3/user/${username}/animelist/watching`);
     jsonWatching = await watchingResponse.json();
 
@@ -10,8 +10,21 @@ async function getMALInfo(username){
 
     const planToWatchResponse = await fetch(`https://api.jikan.moe/v3/user/${username}/animelist/ptw`);
     jsonPlanToWatch = await planToWatchResponse.json();  
+
+
+    if(jsonWatching["status"] == 400){
+        jsonWatching = newJsonWatching;
+    }
+
+    if(jsonCompleted["status"] == 400){
+        jsonWatching = newJsonCompleted;
+    }
+
+    if(jsonPlanToWatch["status"] == 400){
+        jsonPlanToWatch = newJsonPlanToWatch;
+    }
     
-    renderAnime("watching", jsonWatching);
+    renderAnime("watching", jsonWatching, configJson);
 }
 
 twitch.onAuthorized(function(auth){
@@ -24,7 +37,7 @@ twitch.onAuthorized(function(auth){
             const myJSON = JSON.parse(twitch.configuration.broadcaster.content)
             const username = myJSON["username"];
     
-            getMALInfo(username);
+            getMALInfo(username, myJSON);
         }
         catch(e){
             console.log(e);
