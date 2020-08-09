@@ -5,74 +5,85 @@
     <link rel="stylesheet" href="config.css">
   </head>
     <body>
-      <p id="error-message"></p>
-      <p style="color: white" id="current-username"></p>       
-      <input type="text" placeholder="Enter MAL Username..." id="username">
+      <div class="mal-input">
+        <p style="margin: 0;" id="error-message"></p>
+        <p style="color: white;" id="current-username"></p>       
+        <input type="text" placeholder="Enter MAL Username..." id="username">
+      </div>
 
-      <div class="inputfield">
+      <div class="config-wrapper">
         <div class="input-wrapper">
+          <p style="margin-top: 0;">Anime/Manga Text Color</p>
+          <input value="#ffffff" id="header-text-color" type="color">
+
+          <p>Anime/Manga Selector Color</p>
+          <input value="#ffffff" id="selector-color" type="color">
+
+          <p>Anime/Manga Background Color</p>
+          <input value="#a467ff" id="header-background-color" type="color">
+
           <p>Navbar Color</p>
           <input value="#9147ff" id="nav-color" type="color">
-        </div>
-        <img src="images/navbar-color.png" alt="navbar">
-      </div>
-
-      <hr>
-
-      <div class="inputfield">
-        <div class="input-wrapper">
+  
           <p>Navbar Text Color</p>
           <input value="#ffffff" id="nav-text-color" type="color">
-        </div>
-        <img src="images/navbar-text-color.png" alt="navbar-text">
-      </div>
-
-      <hr>
-
-      <div class="inputfield">
-        <div class="input-wrapper">
-          <p>List-Counter Text Color</p>
+  
+          <p>Counter Text Color</p>
           <input value="#ffffff" id="list-text-color" type="color">
-        </div>
-        <img src="images/list-counter-color.png" alt="list-text-color">
-      </div>
-
-      <hr>
-
-      <div class="inputfield">
-        <div class="input-wrapper">
+  
           <p>Large Card Accent Color</p>
           <input value="#9147ff" id="card-accent-color" type="color">
-        </div>
-        <img src="images/large-card-accent.png" alt="large-card-accent-color">
-      </div>
-
-      <hr>
-
-      <div class="inputfield">
-        <div class="input-wrapper">
+  
           <p>Large Card Text Color</p>
           <input value="#ffffff" id="card-text-color" type="color">
-        </div>
-        <img src="images/large-card-text-color.png" alt="large-card-text-color">
-      </div>
-
-      <hr>
-
-      <div class="inputfield">
-        <div class="input-wrapper">
+  
           <p>Extension Background Color</p>
           <input value="#18181b" id="app-background" type="color">
         </div>
-        <img src="images/background-color.png" alt="background-color">
+
+        <div id="live-preview" class="live-preview">
+          <div id="extension-header">
+            <p id="head-text">Anime</p>  
+            <div id="enable-manga">></div>
+          </div>
+
+    
+          <div id="navbar" class="navbar">
+            <ul class="state-list">
+              <li id="watching" class="list-item selected">Watching</li>
+              <li id="completed" class="list-item">Completed</li>
+              <li id="future" class="list-item">Future</li>
+            </ul>
+          </div>
+    
+          <p id="list-counter">123871293 Animes Found</p>
+
+          <div id="mal-info">
+            <img src="https://cdn.myanimelist.net/images/anime/1486/106692.jpg?s=c666255bb9438345d112786e6a98b3af" class="list-image" id="list-image0">
+            <img src="https://cdn.myanimelist.net/images/anime/1485/107693.jpg?s=2eb8063409f5063b5378f7ebb61d73dd" class="list-image" id="list-image1">
+            <img src="https://cdn.myanimelist.net/images/anime/1444/108005.jpg?s=8ae5fe43a57390226a726985bed7b0bf" class="list-image" id="list-image2">
+          </div>
+          <br>
+
+          <p>Card that shows when you click one of the pictures.</p>
+
+          <div id="anime-wrapper32" class="anime-card">
+            <h2>Clannad</h2>
+            <p>Episode or Score</p>
+            <img src="https://cdn.myanimelist.net/images/anime/1804/95033.jpg?s=47ebd401fb1cddabad1a9f100b436639">
+          </div>
+        
+          <div id="anime-large-cards" class="anime-large-cards"></div>
+        </div>
       </div>
 
-      <hr>
+
 
       <div class="button-wrapper">
         <button id="update-button" type="submit">Update</button>
         <button id="reset-button" type="submit">RESET DEFAULT COLORS</button>
       </div>
+
 
       <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
     </body>

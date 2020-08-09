@@ -1,49 +1,28 @@
-var hasLoadedAPI = false;
-var newJsonWatching, newJsonCompleted, newJsonPlanToWatch;
-
-async function getMALInfo(username, configJson){
+async function getMALInfo(username){
     const watchingResponse = await fetch(`https://api.jikan.moe/v3/user/${username}/animelist/watching`);
-    jsonWatching = await watchingResponse.json();
+    const jsonWatching = await watchingResponse.json();
 
     const completedResponse = await fetch(`https://api.jikan.moe/v3/user/${username}/animelist/completed`);
-    jsonCompleted = await completedResponse.json();
+    const jsonCompleted = await completedResponse.json();
 
     const planToWatchResponse = await fetch(`https://api.jikan.moe/v3/user/${username}/animelist/ptw`);
-    jsonPlanToWatch = await planToWatchResponse.json();  
-
-
-    if(jsonWatching["status"] == 400){
-        jsonWatching = newJsonWatching;
-    }
-
-    if(jsonCompleted["status"] == 400){
-        jsonWatching = newJsonCompleted;
-    }
-
-    if(jsonPlanToWatch["status"] == 400){
-        jsonPlanToWatch = newJsonPlanToWatch;
-    }
+    const jsonPlanToWatch = await planToWatchResponse.json();
     
-    renderAnime("watching", jsonWatching, configJson);
+    const readingResponse = await fetch(`https://api.jikan.moe/v3/user/${username}/mangalist/reading`);
+    const jsonReading = await readingResponse.json();
+
+    const mangaCompletedResponse = await fetch(`https://api.jikan.moe/v3/user/${username}/mangalist/completed`);
+    const mangaJsonCompleted = await mangaCompletedResponse.json();
+
+    const mangaPlanToWatchResponse = await fetch(`https://api.jikan.moe/v3/user/${username}/mangalist/ptr`);
+    const mangaJsonPlanToWatch = await mangaPlanToWatchResponse.json(); 
+
+    return list = {
+        animeWatching: jsonWatching,
+        animeCompleted: jsonCompleted,
+        animeFuture: jsonPlanToWatch,
+        mangaReading: jsonReading,
+        mangaCompleted: mangaJsonCompleted,
+        mangaFuture: mangaJsonPlanToWatch
+    };
 }
-
-twitch.onAuthorized(function(auth){
-    // save our credentials
-    token = auth.token; 
-    userId = auth.userId;
-    if(!hasLoadedAPI){
-        hasLoadedAPI = true;
-        try{
-            const myJSON = JSON.parse(twitch.configuration.broadcaster.content)
-            const username = myJSON["username"];
-    
-            getMALInfo(username, myJSON);
-        }
-        catch(e){
-            console.log(e);
-        }
-    }
-});
-
-
-    
