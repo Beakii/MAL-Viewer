@@ -3,6 +3,7 @@ var currentState = "watching";
 var navState = "anime";
 var isAnime = true;
 var firstLoad = true;
+var configExists = false;
 var setHeadTextColor, setSelectorColor, setHeadBackgroundColor, setNavColor, setNavTextColor, setCardAccentColor, setCardTextColor, setListCounterColor, setBackgroundColor;
 var watchingList, completedAnimeist, plantowatchList, readingList, completedMangaList, plantoreadList;
 
@@ -22,7 +23,17 @@ var animeCard = document.getElementById("anime-large-cards");
 
 //THIS HAPPENS ON INITIAL LOAD
 twitch.onAuthorized(function(auth){
-    if(twitch.configuration.broadcaster.content){
+    listCounter.innerText = "";
+
+    try{
+        const config = twitch.configuration.broadcaster.content;
+        configExists = true;
+    }
+    catch(e){
+        buildSetConfigMessage();
+    }
+
+    if(configExists){
         const myJSON = JSON.parse(twitch.configuration.broadcaster.content)
 
         //UPDATE THIS IF CHECK WHEN NEW VERSIONS RELEASE WITH NEW CONFIG INFO
@@ -50,11 +61,11 @@ twitch.onAuthorized(function(auth){
     }
 });
 
-function buildSetConfigMessage(newBuildMessage){
+function buildSetConfigMessage(){
     loader.style.setProperty("display", "none");
     document.getElementById("body").style.setProperty("background-color", "#0e0e10");
     listCounter.style.setProperty("color", "white");
-    listCounter.innerHTML = newBuildMessage + " Please configure the <a target='_blank' href='https://dashboard.twitch.tv/extensions/w31mkd2ijawq6agtwbq84jr7z5p3d7-1.1'>extension</a> from the creator dashboard. <br><br> :(";
+    listCounter.innerHTML = "Please configure the <a target='_blank' href='https://dashboard.twitch.tv/extensions/w31mkd2ijawq6agtwbq84jr7z5p3d7-1.1'>extension</a> from the creator dashboard. <br><br> :(";
 }
 
 function onMALSuccess(malJson){
@@ -74,7 +85,7 @@ function onMALFail(error){
     loader.style.setProperty("display", "none");
     document.getElementById("body").style.setProperty("background-color", "#0e0e10");
     listCounter.innerText = "Something went wrong retrieving data from MAL. If this problem persists check to see if the MAL service is up and running.";
-    listCounter.style.setProperty("color", "white")
+    listCounter.style.setProperty("color", "white");
 }
 
 //AFTER INIT LOAD.............................

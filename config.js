@@ -1,4 +1,5 @@
 const twitch = window.Twitch.ext;
+var configExists = false;
 
 document.getElementById("header-text-color").oninput = function(){
   document.getElementById("head-text").style.setProperty("color", document.getElementById("header-text-color").value);
@@ -38,7 +39,15 @@ document.getElementById("app-background").oninput = function(){
     token = auth.token; 
     userId = auth.userId;
 
-    if(twitch.configuration.broadcaster.content){
+    try{         
+      const config = twitch.configuration.broadcaster.content;
+      configExists = true;
+    }
+    catch(e){
+      console.log("Error: " + e);
+    }
+
+    if(configExists){
       const jsonRet = JSON.parse(twitch.configuration.broadcaster.content);
       const prevUsername = jsonRet["username"];
       const prevHeadTextColor = jsonRet["headTextColor"];
